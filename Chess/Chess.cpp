@@ -1,19 +1,42 @@
 #include "Chess.h"
 
 
-Square::Square(){piece = EMPTY;
-	color = NONE;}
-void Square::setSpace(Square* space){color = space->getColor();
-	piece = space->getPiece();}
-void Square::setEmpty(){color = NONE;
-	piece = EMPTY;}
-Piece Square::getPiece(){
-	return piece;}
-Color Square::getColor(){return color;
+Square::Square()
+{
+    piece = EMPTY;
+	color = NONE;
 }
-void Square::setPieceAndColor(Piece p, Color c){piece = p;
-	color = c;}
-void Board::printBoard() {using namespace std;
+
+void Square::setSpace(Square* space)
+{
+    color = space->getColor();
+	piece = space->getPiece();
+}
+
+void Square::setEmpty()
+{
+    color = NONE;
+	piece = EMPTY;
+}
+Piece Square::getPiece()
+{
+	return piece;
+}
+
+Color Square::getColor()
+{
+    return color;
+}
+
+void Square::setPieceAndColor(Piece p, Color c)
+{
+    piece = p;
+	color = c;
+}
+
+void Board::printBoard()
+{
+    using namespace std;
 	cout << "   y: 0  1  2  3  4  5  6  7 " << endl << "x:" << endl;
 	for (int i = 0; i < 8; i++)
 	{
@@ -41,9 +64,15 @@ void Board::printBoard() {using namespace std;
 				break;
 			default: cout << "XXX";
 				break;
-			}}cout << endl;
-	}}
-bool Board::doMove(){using namespace std;
+			}
+        }
+        cout << endl;
+	}
+}
+
+bool Board::doMove()
+{
+    using namespace std;
 	string move;
 	int x1, x2, y1, y2;
 	bool stop = false;
@@ -57,7 +86,10 @@ bool Board::doMove(){using namespace std;
 		x2 = move[2] - 48;
 		y2 = move[3] - 48;
 		if (getSquare(x1, y1)->getColor() == turn)
-		{if (makeMove(x1, y1, x2, y2) == false){cout << "Invalid move, try again." << endl;
+		{
+            if (makeMove(x1, y1, x2, y2) == false)
+            {
+                cout << "Invalid move, try again." << endl;
 			}
 			else
 				stop = true;
@@ -72,18 +104,21 @@ bool Board::doMove(){using namespace std;
 			return false;
 		}
 		else
-
 		{
 			cout << "BLACK WINS" << endl;
 			return false;
 		}
+
 	if (turn == BLACK)
 		turn = WHITE;
 	else
 		turn = BLACK;
 
-	return true;}
-void Board::setBoard(){
+	return true;
+}
+
+void Board::setBoard()
+{
 	square[0][0].setPieceAndColor(ROOK, WHITE);
 	square[1][0].setPieceAndColor(KNIGHT, WHITE);
 	square[2][0].setPieceAndColor(BISHOP, WHITE);
@@ -122,11 +157,15 @@ void Board::setBoard(){
 		}
 
 }
-bool Board::playGame(){
+bool Board::playGame()
+{
 	system("cls");
 	printBoard();
-	return doMove();}
-	bool Board::moveKing(Square* thisKing, Square* thatSpace) {
+	return doMove();
+}
+
+bool Board::moveKing(Square* thisKing, Square* thatSpace)
+{
 	if (abs(thatSpace->getX() - thisKing->getX()) == 1)
 		if (abs(thatSpace->getY() - thisKing->getY()) == 1)
 		{
@@ -137,7 +176,9 @@ bool Board::playGame(){
 		else return false;
 	else return false;
 }
-bool Board::moveQueen(Square* thisQueen, Square* thatSpace) {	int queenX = thisQueen->getX();
+bool Board::moveQueen(Square* thisQueen, Square* thatSpace)
+{
+    int queenX = thisQueen->getX();
 	int queenY = thisQueen->getY();
 	int thatX = thatSpace->getX();
 	int thatY = thatSpace->getY();
@@ -193,7 +234,8 @@ bool Board::moveQueen(Square* thisQueen, Square* thatSpace) {	int queenX = thisQ
 		return false;
 	}
 }
-bool Board::moveBishop(Square* thisBishop, Square* thatSpace) {
+bool Board::moveBishop(Square* thisBishop, Square* thatSpace)
+{
 	int bishopX = thisBishop->getX();
 	int bishopY = thisBishop->getY();
 	int thatX = thatSpace->getX();
@@ -289,7 +331,8 @@ bool Board::moveRook(Square* thisRook, Square* thatSpace)
 	}
 }
 
-bool Board::movePawn(Square* thisPawn, Square* thatSpace) {
+bool Board::movePawn(Square* thisPawn, Square* thatSpace)
+{
 	using namespace std;
 	bool invalid = false;
 	int pawnX = thisPawn->getX();
@@ -336,7 +379,9 @@ bool Board::movePawn(Square* thisPawn, Square* thatSpace) {
 		else
 			return false;
 }
-bool Board::makeMove(int x1, int y1, int x2, int y2) {
+
+bool Board::makeMove(int x1, int y1, int x2, int y2)
+{
 	using namespace std;
 	if (x1 < 0 || x1>7 || y1 < 0 || y1>7 || x2 < 0 || x2>7 || y2 < 0 || y2>8)
 	{
@@ -352,22 +397,22 @@ bool Board::makeMove(int x1, int y1, int x2, int y2) {
 	}
 	switch (src->getPiece())
 	{
-	case KING: return moveKing(src, dest);
-		break;
-	case QUEEN: return moveQueen(src, dest);
-		break;
-	case BISHOP: return moveBishop(src, dest);
-		break;
-	case KNIGHT: return moveKnight(src, dest);
-		break;
-	case ROOK: return moveRook(src, dest);
-		break;
-	case PAWN: return movePawn(src, dest);
-		break;
-	case EMPTY: std::cout << "You do not have a piece there" << std::endl;  return false;
-		break;
-	default: std::cerr << "Something went wrong in the switch statement in makeMove()" << std::endl;
-		break;
+        case KING: return moveKing(src, dest);
+            break;
+        case QUEEN: return moveQueen(src, dest);
+            break;
+        case BISHOP: return moveBishop(src, dest);
+            break;
+        case KNIGHT: return moveKnight(src, dest);
+            break;
+        case ROOK: return moveRook(src, dest);
+            break;
+        case PAWN: return movePawn(src, dest);
+            break;
+        case EMPTY: std::cout << "You do not have a piece there" << std::endl;  return false;
+            break;
+        default: std::cerr << "Something went wrong in the switch statement in makeMove()" << std::endl;
+            break;
 	}
 	return false;
 }

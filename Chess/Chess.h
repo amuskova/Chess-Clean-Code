@@ -9,10 +9,13 @@ enum Color { WHITE, BLACK, NONE };
 
 class Square
 {
+private:
 
 	Piece piece;
 	Color color;
 	int x, y;
+
+
 public:
 	void setSpace(Square*);
 	void setEmpty();
@@ -38,13 +41,16 @@ class Board
 	bool movePawn(Square* thisPawn, Square* thatSpace);
 	bool makeMove(int x1, int y1, int x2, int y2);
 	void printBoard();
+
 public:
 	Square* getSquare(int x, int y) {
 		return &square[x][y];
 	}
+
 	void setSquare(Square * s, int x, int y){
 		square[x][y]=*s;
 	}
+
 	bool doMove();
 
 	void setBoard();
