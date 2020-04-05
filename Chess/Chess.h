@@ -14,11 +14,11 @@ class Square
 	Color color;
 	int x, y;
 public:
-	void setSp(Square*);
-	void setEm();
-	void setPC(Piece, Color);
-	Piece getP();
-	Color getC();
+	void setSpace(Square*);
+	void setEmpty();
+	void setPieceAndColor(Piece, Color);
+	Piece getPiece();
+	Color getColor();
 	void setX(int ex) { x = ex; }
 	void setY(int why) { y = why; }
 	int getX() { return x; }
@@ -30,13 +30,13 @@ class Board
 {
 	Square square[8][8];
 	Color turn=WHITE;
-	bool moveK(Square* thisKing, Square* thatSpace);
-	bool moveQ(Square* thisQueen, Square* thatSpace);
-	bool moveBi(Square* thisBishop, Square* thatSpace);
-	bool moveKn(Square* thisKnight, Square* thatSpace);
-	bool moveR(Square* thisRook, Square* thatSpace);
-	bool moveP(Square* thisPawn, Square* thatSpace);
-	bool makeM(int x1, int y1, int x2, int y2);
+	bool moveKing(Square* thisKing, Square* thatSpace);
+	bool moveQueen(Square* thisQueen, Square* thatSpace);
+	bool moveBishop(Square* thisBishop, Square* thatSpace);
+	bool moveKnight(Square* thisKnight, Square* thatSpace);
+	bool moveRook(Square* thisRook, Square* thatSpace);
+	bool movePawn(Square* thisPawn, Square* thatSpace);
+	bool makeMove(int x1, int y1, int x2, int y2);
 	void printBoard();
 public:
 	Square* getSquare(int x, int y) {
