@@ -1,6 +1,6 @@
 #include "Chess.h"
 
-
+//rules of The Chess: https://en.wikipedia.org/wiki/Rules_of_chess
 Square::Square()
 {
     piece = EMPTY;
@@ -164,7 +164,7 @@ bool Board::playGame()
 	return doMove();
 }
 
-bool Board::moveKing(Square* thisKing, Square* thatSpace)
+bool Board::moveKing(Square* thisKing, Square* thatSpace) //moves of the King according to the rules only 1 square
 {
 	if (abs(thatSpace->getX() - thisKing->getX()) == 1)
 		if (abs(thatSpace->getY() - thisKing->getY()) == 1)
@@ -176,7 +176,7 @@ bool Board::moveKing(Square* thisKing, Square* thatSpace)
 		else return false;
 	else return false;
 }
-bool Board::moveQueen(Square* thisQueen, Square* thatSpace)
+bool Board::moveQueen(Square* thisQueen, Square* thatSpace) //moves of the Queen according to the rules
 {
     int queenX = thisQueen->getX();
 	int queenY = thisQueen->getY();
@@ -234,7 +234,7 @@ bool Board::moveQueen(Square* thisQueen, Square* thatSpace)
 		return false;
 	}
 }
-bool Board::moveBishop(Square* thisBishop, Square* thatSpace)
+bool Board::moveBishop(Square* thisBishop, Square* thatSpace) //moves of the Bishop according to the rules
 {
 	int bishopX = thisBishop->getX();
 	int bishopY = thisBishop->getY();
@@ -268,7 +268,7 @@ bool Board::moveBishop(Square* thisBishop, Square* thatSpace)
 		return false;
 	}
 }
-bool Board::moveKnight(Square* thisKnight, Square* thatSpace)
+bool Board::moveKnight(Square* thisKnight, Square* thatSpace) //moves of the Knight according to the rules
 {
 	int knightX = thisKnight->getX();
 	int knightY = thisKnight->getY();
@@ -286,7 +286,7 @@ bool Board::moveKnight(Square* thisKnight, Square* thatSpace)
 		return false;
 	}
 }
-bool Board::moveRook(Square* thisRook, Square* thatSpace)
+bool Board::moveRook(Square* thisRook, Square* thatSpace)//moves of the Rook according to the rules
 {
 	int rookX = thisRook->getX();
 	int rookY = thisRook->getY();
@@ -331,7 +331,7 @@ bool Board::moveRook(Square* thisRook, Square* thatSpace)
 	}
 }
 
-bool Board::movePawn(Square* thisPawn, Square* thatSpace)
+bool Board::movePawn(Square* thisPawn, Square* thatSpace)//moves of Pawn according to the rules
 {
 	using namespace std;
 	bool invalid = false;
@@ -380,7 +380,7 @@ bool Board::movePawn(Square* thisPawn, Square* thatSpace)
 			return false;
 }
 
-bool Board::makeMove(int x1, int y1, int x2, int y2)
+bool Board::makeMove(int x1, int y1, int x2, int y2) //check the move is it possible or not
 {
 	using namespace std;
 	if (x1 < 0 || x1>7 || y1 < 0 || y1>7 || x2 < 0 || x2>7 || y2 < 0 || y2>8)

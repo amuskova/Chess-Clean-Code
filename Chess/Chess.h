@@ -4,8 +4,8 @@
 #include <cmath>
 #include <string>
 
-enum Piece { KING, QUEEN, BISHOP, KNIGHT, ROOK, PAWN, EMPTY };
-enum Color { WHITE, BLACK, NONE };
+enum Piece { KING, QUEEN, BISHOP, KNIGHT, ROOK, PAWN, EMPTY }; //figures
+enum Color { WHITE, BLACK, NONE }; //board
 
 class Square
 {
